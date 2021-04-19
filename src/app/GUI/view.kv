@@ -1,0 +1,159 @@
+WindowManager:
+    MainScreen:
+    ResultScreen:
+    InstructionScreen:
+
+<MainScreen>:
+    title:title
+    keyword:keyword
+    button:button
+    maxPage:maxPage
+    maxVideo:maxVideo
+    subarea:subarea
+    name: "main"
+    FloatLayout:
+        size: root.width, root.height
+        Button:
+            text:  "Instruction"
+            size_hint: .1, 0.05
+            pos_hint: {"center_x":0.1,"center_y":0.1}
+            on_press:
+                app.root.current = "instruction"
+                root.manager.transition.direction = "right"
+
+        Label:
+            id:title
+            text: "Bili-Impression"
+            font_size: 48
+            size_hint: .6, .2
+            pos_hint: {"center_x":0.5,"center_y":0.7}
+
+        TextInput:
+            id:keyword
+            text: "Please input the keyword you want to learn about"
+            font_name: "Droid-Sans-Fallback.ttf"
+            size_hint: .5, .05
+            pos_hint: {"center_x":0.45,"center_y":0.5}
+            background_color: (1,1,1,0.5)
+
+        Label:
+            text: "Max page:"
+            size_hint: .1, .05
+            pos_hint: {"center_x":0.25,"center_y":0.45}
+
+        TextInput:
+            id:maxPage
+            text: "1"
+            size_hint: .15, .05
+            pos_hint: {"center_x":0.4,"center_y":0.45}
+            background_color: (1,1,1,0.5)
+
+        Label:
+            text: "Max Video:"
+            size_hint: .1, .05
+            pos_hint: {"center_x":0.55,"center_y":0.45}
+
+        TextInput:
+            id:maxVideo
+            text: "50"
+            size_hint: .15, .05
+            pos_hint: {"center_x":0.7,"center_y":0.45}
+            background_color: (1,1,1,0.5)
+
+        Label:
+            text: "Subarea:"
+            size_hint: .1, .05
+            pos_hint: {"center_x":0.25,"center_y":0.40}
+
+        TextInput:
+            id:subarea
+            text: "0"
+            size_hint: .15, .05
+            pos_hint: {"center_x":0.4,"center_y":0.40}
+            background_color: (1,1,1,0.5)
+
+        Button:
+            id:button
+            text: "search"
+            font_name: "Droid-Sans-Fallback.ttf"
+            size_hint: .1, 0.05
+            pos_hint: {"center_x":0.75,"center_y":0.5}
+            on_press:
+                root.press()
+                app.root.current = "result"
+                root.manager.transition.direction = "left"
+
+        Label:
+            text: "Sorted by:"
+            size_hint: .1, .05
+            pos_hint: {"center_x":0.20,"center_y":0.30}
+
+        Button:
+            text: "Default"
+            size_hint: .18, 0.05
+            pos_hint: {"center_x":0.35,"center_y":0.30}
+            # on_press: root.press()
+            on_press:
+                root.set_rank_order("0")
+            background_color: (1,1,1,1)
+
+        Button:
+            text: "Most Recent"
+            size_hint: .18, 0.05
+            pos_hint: {"center_x":0.55,"center_y":0.30}
+            # on_press: root.press()
+            on_press:
+                root.set_rank_order("2")
+            background_color: (1,1,1,1)
+
+        Button:
+            text: "Most Danmaku"
+            size_hint: .18, 0.05
+            pos_hint: {"center_x":0.75,"center_y":0.30}
+            # on_press: root.press()
+            on_press:
+                root.set_rank_order("3")
+            background_color: (1,1,1,1)
+
+<ResultScreen>:
+    textArea:textArea
+    name: "result"
+    FloatLayout:
+        TextInput:
+            id: textArea
+            background_color: (1,1,1,1)
+            text: "Press button to start scraping"
+            font_name: "Droid-Sans-Fallback.ttf"
+            multiline: True
+            color: (0,0,0,1)
+            font_size: 18
+            size_hint: .7, .4
+            pos_hint: {"center_x":0.5,"center_y":0.7}
+        Button:
+            text:  "Scrape!"
+            size_hint: .1, 0.05
+            pos_hint: {"center_x":0.5,"center_y":0.4}
+            on_press:
+                root.set_text()
+            on_release:
+                root.scrape()
+
+        Button:
+            text:  "Back"
+            size_hint: .1, 0.05
+            pos_hint: {"center_x":0.1,"center_y":0.1}
+            on_press:
+                root.clean()
+                app.root.current = "main"
+                root.manager.transition.direction = "right"
+
+<InstructionScreen>
+    name: "instruction"
+    FloatLayout:
+        Button:
+            text:  "Back"
+            size_hint: .1, 0.05
+            pos_hint: {"center_x":0.1,"center_y":0.1}
+            on_press:
+                app.root.current = "main"
+                root.manager.transition.direction = "left"
