@@ -9,15 +9,18 @@
 
 针对一个用户感兴趣的话题词, (e.g. 王者荣耀，photoshop，etc.), 它具有以下的功能：
 
-- 根据爬取相关视频的评论和弹幕生成话题印象词云，并用NLP的算法提高词云质量
-- 筛选该话题下最受欢迎的UP主
-- 生成对该话题感兴趣的用户的性别分布
-- 用类Kernel Density Estimation的方法拟合话题的热度变化
-- 提取弹;幕/评论中的 named entity 并生成关联标签/UP主/概念的知识图谱。
+- 根据爬取相关视频的评论和弹幕生成话题印象词云，并用算法提高词云质量。该算法经过user study被证明显著好于python原生的wordcloud package。
+- 用算法生成话题下最受欢迎的UP主排名 (B站自身未实现的功能)。
+- 生成对该话题感兴趣的用户的性别分布。
+- 用类Kernel Density Estimation的方法拟合话题的热度变化（统计建模）。
+- 提取弹幕/评论中的 named entity 进行 entity linking, 生成关联标签/UP主/概念的知识图谱。
 - More coming in the future. Stay tuned!
 
 我们提供两种方法来运行代码: (1) 用本地的GUI的来直接运行代码。需要在本地安装所有需要的development packages (详见requirements). （2）我们提供了后端服务器及前端web application. 用户可以直接访问我们的网站来执行操作。
 
+## 效果
+如果想尝试这个项目的全部功能，请联系xinyupi2@illinois.edu & zshan2@illinois.edu 打开server （我们并没有经费长期维持一个服务器), 或自行在本地运行app(需安装所有dev packages).
+查看词云效果请参看src/backend/wordcloud_generator/wordclouds. 和python原生wordcloud的对比请看src/backend/tests/manual_tests/week3_manual_tests
 
 
 ## Requirements
@@ -115,3 +118,4 @@ Implement the word cloud generation algorithm and do optimization. This includes
 - Visualization of all data obtained from the backend.
 - Adding interactivity to visualizations.(e.g. Line charts with nodes can show pop-ups when moving the mouse on it.)
 -  Adding decorations to Web App and Local App.
+
